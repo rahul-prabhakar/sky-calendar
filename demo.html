@@ -20,10 +20,16 @@ app.controller('Ctrl', function($scope) {
 <body ng-app = "calendar">
 <div ng-controller = "Ctrl">
 {{out}}
-<skycalendar output="out" control = "ctr" startmonth = "1" startyear = "2015" months = "3" selection = "multiple">
+<skycalendar output="out" control = "ctr" startmonth = "1" startyear = "2015" nummonths = "3" selection = "multiple">
 </skycalendar>
 <button ng-click="ctr.previousMonth()">Previous Month</button>
 		<button ng-click="ctr.nextMonth()">Next Month</button>
+
+<skycalendar output="out" control = "ctr" startmonth = "11" startyear = "1993" nummonths = "6" selection = "single">
+</skycalendar>
+
+<skycalendar output="out" control = "ctr" startmonth = "11" startyear = "1993" nummonths = "6" selection = "single" selecttype = "monthly">
+</skycalendar>
 </div>
 
 </body>
