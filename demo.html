@@ -15,12 +15,12 @@ app.controller('Ctrl', function($scope) {
 </script>
 <script src="skyCalendar.js" type="text/javascript"></script>
 <meta charset="ISO-8859-1">
-<title>Sky Calendar<title>
+<title>Sky Calendar</title>
 </head>
 <body ng-app = "calendar">
 <div ng-controller = "Ctrl">
 {{out}}
-<skycalendar output="out" control = "ctr" startmonth = "1" startyear = "2015" months = "3">
+<skycalendar output="out" control = "ctr" startmonth = "1" startyear = "2015" months = "3" selection = "multiple">
 </skycalendar>
 <button ng-click="ctr.previousMonth()">Previous Month</button>
 		<button ng-click="ctr.nextMonth()">Next Month</button>
