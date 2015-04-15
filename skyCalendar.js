@@ -9,7 +9,7 @@ app
 								+ '  <link rel="stylesheet" href="skyCalendar.css">\n'
 								+
 
-								'<section class="container" >\n'
+								'<section class="" >\n'
 								+ '	<table class="skyCalMultiple3">\n'
 								+ '		<tr>\n'
 								+ '			<td ng-repeat="month in selectedMonths">\n'
@@ -36,7 +36,7 @@ app
 								+ '||day.off && '
 								+ "'off'"
 								+ '"><a\n'
-								+ '								ng-click="selectDay(day)"> {{day.day}} </a></td>\n'
+								+ '								ng-click="selectDay(day,selecttype||' + "'single'" + ')"> {{day.day}} </a></td>\n'
 								+
 
 								'						</tr>\n' + '					</tbody>\n'
@@ -50,6 +50,7 @@ app
 							startyear : '@',
 							nummonths : '@',
 							selection : '@',
+							selecttype : '@',
 							output : '='
 						},
 						link : function($scope) {
@@ -63,7 +64,8 @@ app
 									'April', 'May', 'June', 'July', 'August',
 									'September', 'October', 'November',
 									'December' ];
-							$scope.selectDay = function(day) {
+							$scope.selectDay = function(day,selecttype) {
+								
 								if (day.off == "off")
 									return;
 								if ($scope.selection
@@ -84,7 +86,6 @@ app
 								}
 								day.selected = !day.selected;
 								if (day.selected) {
-
 									$scope.output.push(day);
 								}
 								if (!day.selected) {
@@ -101,16 +102,25 @@ app
 
 								$scope.selectedMonths = [];
 								for (i = 0; i < noMonths; i++) {
-									$scope.selectedMonths
-											.push({
-												month : month + i > 12 ? (month + i) % 12
-														: month + i,
-												year : month + i > 12 ? year
-														+ Math
-																.floor((month + i) / 12)
-														: year,
-												weeks : []
-											});
+									var m, y;
+									if (month * 1 + i * 1 > 12) {
+										m = (month * 1 + i * 1) % 12 == 0 ? 12
+												: (month * 1 + i * 1) % 12;
+										y = (month * 1 + i * 1) % 12 == 0 ? (year * 1 + Math
+												.floor((month * 1 + i * 1) / 12) * 1) - 1
+												: (year * 1 + Math
+														.floor((month * 1 + i * 1) / 12) * 1);
+									}
+
+									else {
+										m = month * 1 + i * 1;
+										y = year;
+									}
+									$scope.selectedMonths.push({
+										month : m,
+										year : y,
+										weeks : []
+									});
 								}
 							};
 							$scope.newCalendar($scope.startmonth || 12,
