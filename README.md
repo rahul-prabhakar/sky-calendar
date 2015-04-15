@@ -1,2 +1,2 @@
 # sky-calendar
-It contains a Calendar made with AngularJS
+It contains a Calendar directive made with AngularJS
