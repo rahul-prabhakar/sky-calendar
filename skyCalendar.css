@@ -113,12 +113,13 @@ table {
   width: 640px;
 }
 	.container .skyCal {
-	font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
-  color: #404040;
-	  margin: 0 auto;
+	
 	}
 
 	.skyCal {
+	font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
+  color: #404040;
+	  margin: 0 auto;
 	  display: block;
 	  width: 216px;
 	  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
