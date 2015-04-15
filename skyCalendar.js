@@ -49,6 +49,7 @@ app
 							startmonth : '@',
 							startyear : '@',
 							nummonths : '@',
+							selection : '@',
 							output : '='
 						},
 						link : function($scope) {
@@ -63,6 +64,24 @@ app
 									'September', 'October', 'November',
 									'December' ];
 							$scope.selectDay = function(day) {
+								if (day.off == "off")
+									return;
+								if ($scope.selection
+										&& $scope.selection == "single") {
+									$scope.output.pop();
+									$scope.output.push(day);
+
+									for (i in $scope.selectedMonths) {
+										for (j in $scope.selectedMonths[i].weeks) {
+											for (k in $scope.selectedMonths[i].weeks[j].days) {
+												$scope.selectedMonths[i].weeks[j].days[k].selected = false;
+											}
+										}
+									}
+
+									day.selected = !day.selected;
+									return;
+								}
 								day.selected = !day.selected;
 								if (day.selected) {
 
@@ -210,8 +229,21 @@ app
 										}
 										weeks.splice(5, 1);
 									}
+
+									for (a in $scope.output) {
+										for (b in weeks) {
+											for (c in weeks[b].days) {
+												if ($scope.output[a].selected
+														&& weeks[b].days[c].day == $scope.output[a].day
+														&& weeks[b].days[c].month == $scope.output[a].month
+														&& weeks[b].days[c].year == $scope.output[a].year)
+													weeks[b].days[c].selected = true;
+											}
+										}
+									}
 									$scope.selectedMonths[i].weeks = angular
 											.copy(weeks);
+
 								}
 
 							};
